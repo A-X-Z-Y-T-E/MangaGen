@@ -1,0 +1,1 @@
+# Manga/comic prompt templates

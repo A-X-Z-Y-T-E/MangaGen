@@ -1,0 +1,55 @@
+# Configurations like model name, scheduler, steps
+
+# Configuration for TrinArt Stable Diffusion v2 manga generator
+
+# Model settings
+model_id: "naclbit/trinart_stable_diffusion_v2"  # Model ID on Hugging Face
+revision: "diffusers-115k"  # Model version (diffusers-60k, diffusers-95k, diffusers-115k)
+
+# Generation settings
+device: "cuda"  # Device to use (cuda, cpu)
+output_size: [512, 512]  # Image size [width, height]
+guidance_scale: 7.5  # CFG scale (how closely to follow prompt)
+num_inference_steps: 30  # Number of denoising steps
+seed: null  # Random seed (null for random)
+
+# Style settings
+style: "manga"  # manga, anime, comic
+detail_level: "high"  # low, medium, high
+
+# Prompt settings
+prompt_prefix: "masterpiece, best quality, highly detailed manga illustration"
+prompt_suffix: "black and white, manga panel, professional manga art"
+negative_prompt: "low quality, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, jpeg artifacts, signature, watermark, username, blurry, artist name, low contrast"
+
+# Post-processing
+apply_manga_filter: true  # Apply manga-style filter to results
+manga_style: "standard"  # standard, highcontrast, sketch
+
+# Additional model settings
+use_attention_slicing: true  # Enable memory optimization
+use_xformers: false  # Use xFormers for memory efficiency (if available)
+
+# Performance settings
+torch_dtype: "float16"  # Data type (float16, float32)
+enable_vae_slicing: true  # Enable VAE slicing for memory efficiency
+
+# Presets for different manga styles
+presets:
+  shonen:  # Action-oriented manga
+    prompt_prefix: "masterpiece, best quality, dynamic manga illustration"
+    prompt_suffix: "black and white, shonen manga style, action scene, dynamic poses"
+    guidance_scale: 8.0
+    output_size: [576, 576]
+  
+  shojo:  # Romance/drama manga
+    prompt_prefix: "masterpiece, best quality, emotional manga illustration"
+    prompt_suffix: "black and white, shojo manga style, soft and delicate lines, emotional expression"
+    guidance_scale: 7.0
+    output_size: [512, 640]
+  
+  seinen:  # Adult-oriented manga
+    prompt_prefix: "masterpiece, best quality, detailed manga illustration"
+    prompt_suffix: "black and white, seinen manga style, realistic details, mature scene"
+    guidance_scale: 9.0
+    output_size: [640, 512]
